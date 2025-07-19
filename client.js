@@ -1,5 +1,7 @@
-const {Redis} =require('ioredis')
+import redis from 'redis'
+const client = redis.createClient();
+client.on("error", (err) => console.log("Redis Error:", err));
 
-const client=new Redis();
+await client.connect();
 
-module.exports=client;
+export default client;
